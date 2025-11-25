@@ -25,12 +25,17 @@ jobs:
       - name: Install Python dependencies
         run: pip install pandas openpyxl
 
+      - name: Debug file
+        run: |
+          file members.xlsx
+          ls -lh members.xlsx
+
       - name: Convert XLSX to CSV
         run: |
           python3 - << 'EOF'
           import pandas as pd
 
-          df = pd.read_excel("members.xlsx")
+          df = pd.read_excel("members.xlsx", engine="openpyxl")
 
           df = df.rename(columns={
               df.columns[5]: "GITHUB_ACCOUNT", 
