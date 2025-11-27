@@ -16,6 +16,10 @@ jobs:
         run: |
           curl -L -o members.xlsx "${{ secrets.EXCEL_DOWNLOAD_URL }}"
 
+          
+      - name: Print first lines of downloaded file (debug)
+        run: head -n 20 members.xlsx
+
       # ---- Convert XLSX → CSV ----
       - name: Set up Python
         uses: actions/setup-python@v5
